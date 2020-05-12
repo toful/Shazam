@@ -42,7 +42,15 @@ Matplotlib can be installed via pip from PyPI. [Matplotlib](https://matplotlib.o
 **Visual process of getting the Hashes of a Song**
 ```jupyter notebook Shazam.ipynb```
 
-More in the next commit.
+
+**Building the fingerprint database**
+```python3 builddb.py songs-folder database-file```
+
+
+**Identifying a sample**
+```python3 identify.py database-file sample```
+
+
 
 ## Author
 
