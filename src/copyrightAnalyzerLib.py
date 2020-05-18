@@ -15,12 +15,12 @@ class Fingerprint:
         self.NFFT = 256
         self.noverlap = int(self.NFFT * 0.5)
         #Getting the coords of the local max peaks
-        self.min_distance = 5
+        self.min_distance = 10
         self.threshold_abs = 0.0   #Minimum intensity of peaks. By default, the minimum intensity of the image.
         self.threshold_rel = 0.0   #Minimum intensity of peaks, calculated as: max(image) * threshold_rel.
-        self.num_peaks = 300
+        self.num_peaks = 200
         #Number of links for each node
-        self.num_links = 3
+        self.num_links = 5
         
     def fingerprint_file(self, audio_file):
         sample_rate, samples = self.sample_audio( audio_file )
@@ -111,10 +111,7 @@ class Compare:
                 coincidence_value = np.max( n )
                 result += [ [ coincidence_value, self.db.get_song_name(song) ] ]
             result.sort(key=lambda x: -x[0])
-            print("The given song coincides with the following songs in decrasing preference:")
-            i = 1
-            for song in result:
-                print( "\t", song[1] )
         else:
             print("No matches found!")
+        return result
 
