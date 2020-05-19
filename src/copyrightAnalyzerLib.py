@@ -12,15 +12,15 @@ import dataset
 class Fingerprint:
     def __init__(self):
         #default values
-        self.NFFT = 256
+        self.NFFT = 4096
         self.noverlap = int(self.NFFT * 0.5)
         #Getting the coords of the local max peaks
-        self.min_distance = 10
+        self.min_distance = 20
         self.threshold_abs = 0.0   #Minimum intensity of peaks. By default, the minimum intensity of the image.
         self.threshold_rel = 0.0   #Minimum intensity of peaks, calculated as: max(image) * threshold_rel.
-        self.num_peaks = 200
+        self.num_peaks = 1200
         #Number of links for each node
-        self.num_links = 5
+        self.num_links = 3
         
     def fingerprint_file(self, audio_file):
         sample_rate, samples = self.sample_audio( audio_file )
@@ -106,7 +106,7 @@ class Compare:
         result = []
         if len( coincidences.keys() ) > 0:
             for song in coincidences.keys():
-                (n, bins, patches) = plt.hist(x=coincidences[song], bins='auto')
+                (n, bins, patches) = plt.hist(x=coincidences[song], bins=20)
                 #coincidence_value = np.max( n )/np.sum( n )
                 coincidence_value = np.max( n )
                 result += [ [ coincidence_value, self.db.get_song_name(song) ] ]

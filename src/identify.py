@@ -18,7 +18,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 4:
         if len(result) > 0:
             song_name = os.path.basename( song[:-4] )
-            if( song_name == result[0][1] ):
+            if( song_name.replace('_', '').startswith(result[0][1].replace('.', '').replace(' ', '')) ):
                 print("1")
             else:
                 print("0")
@@ -29,3 +29,4 @@ if __name__ == '__main__':
                 print( "\t", song[1] )
         
     exit( 0 )
+    
